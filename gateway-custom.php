@@ -124,6 +124,28 @@ function complete_order_callback()
 	$order = wc_create_order();
 	$payment_gateways = WC()->payment_gateways->payment_gateways();
 	$order->set_payment_method($payment_gateways[$data["payment_method"]]);
+	// Set customer data
+	$order->set_billing_first_name($data["billing_first_name"]);
+	$order->set_billing_last_name($data["billing_last_name"]);
+	$order->set_billing_company($data["billing_company"]);
+	$order->set_billing_email($data["billing_email"]);
+	$order->set_billing_phone($data["billing_phone"]);
+	$order->set_billing_address_1($data["billing_address_1"]);
+	$order->set_billing_address_2($data["billing_address_2"]);
+	$order->set_billing_city($data["billing_city"]);
+	$order->set_billing_state($data["billing_state"]);
+	$order->set_billing_postcode($data["billing_postcode"]);
+	$order->set_billing_country($data["billing_country"]);
+
+	$order->set_shipping_first_name($data["shipping_first_name"]);
+	$order->set_shipping_last_name($data["shipping_last_name"]);
+	$order->set_shipping_company($data["shipping_company"]);
+	$order->set_shipping_address_1($data["shipping_address_1"]);
+	$order->set_shipping_address_2($data["shipping_address_2"]);
+	$order->set_shipping_city($data["shipping_city"]);
+	$order->set_shipping_state($data["shipping_state"]);
+	$order->set_shipping_postcode($data["shipping_postcode"]);
+	$order->set_shipping_country($data["shipping_country"]);
 	$cart = WC()->cart;
 	foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
 		$product_id = $cart_item['product_id'];
