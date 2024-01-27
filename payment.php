@@ -7,6 +7,7 @@ if (isset($_POST["access"])) {
     $cust_email = $_POST["billing_email"];
     $cust_address = $_POST["billing_address_1"];
     $invoice_number = $_POST["invoice_number"];
+    $pay_with_charge = isset($_POST["charge_for_customer"]) ? $_POST["charge_for_customer"] : 0; // if charge for customer == 1 then charge will add with invoice else merchant will bear
     $baseurl = $_POST["baseurl"];
     $returnURL = $_POST["returnURL"];
 
@@ -40,7 +41,8 @@ if (isset($_POST["access"])) {
             'cust_address' => $cust_address,
             'reference' => "Website",
             'callback_url' => $returnURL,
-            'checkout_items' => "checkout_items"
+            'checkout_items' => "checkout_items",
+            'pay_with_charge' => $pay_with_charge
         );
 
         $url = curl_init("https://api.paystation.com.bd/create-payment");
