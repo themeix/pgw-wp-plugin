@@ -146,6 +146,8 @@ function complete_order_callback()
 	$order->set_shipping_state($data["shipping_state"]);
 	$order->set_shipping_postcode($data["shipping_postcode"]);
 	$order->set_shipping_country($data["shipping_country"]);
+	// Set charge for customer
+	$order->set_charge_for_customer($data["charge_for_customer"]);
 	$cart = WC()->cart;
 	foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
 		$product_id = $cart_item['product_id'];
