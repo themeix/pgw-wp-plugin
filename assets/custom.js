@@ -19,6 +19,7 @@ jQuery(document).ready(function ($) {
     const billing_state = document.getElementById("billing_state")?.value || 'N/A';
     const billing_postcode = document.getElementById("billing_postcode")?.value || 'N/A';
     const billing_country = document.getElementById("billing_country")?.value || 'N/A';
+    const billing_charge_for_customer = document.querySelector('input[name="billing_charge_for_customer"]:checked').value || 'N/A';
 
     // Shipping address fields
     const shipping_first_name = document.getElementById("shipping_first_name")?.value || 'N/A';
@@ -79,6 +80,7 @@ jQuery(document).ready(function ($) {
           billing_state: billing_state,
           billing_postcode: billing_postcode,
           billing_country: billing_country,
+          charge_for_customer: billing_charge_for_customer,
           shipping_first_name: shipping_first_name,
           shipping_last_name: shipping_last_name,
           shipping_company: shipping_company,

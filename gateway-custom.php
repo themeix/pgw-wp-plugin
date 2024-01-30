@@ -107,6 +107,7 @@ function complete_order_callback()
 		'state'      => $data["billing_state"],
 		'postcode'   => $data["billing_postcode"],
 		'country'    => $data["billing_country"],
+		'charge_for_customer' => $data["billing_charge_for_customer"],
 	);
 	
 	$shipping_address = array(
@@ -136,6 +137,7 @@ function complete_order_callback()
 	$order->set_billing_state($data["billing_state"]);
 	$order->set_billing_postcode($data["billing_postcode"]);
 	$order->set_billing_country($data["billing_country"]);
+	// $order->set_billing_charge_for_customer($data["billing_charge_for_customer"]);
 
 	$order->set_shipping_first_name($data["shipping_first_name"]);
 	$order->set_shipping_last_name($data["shipping_last_name"]);
