@@ -52,6 +52,10 @@ jQuery(document).ready(function ($) {
           makePayment(response.order_id, response.returnURL);
         } else if (response.order_id > 0 && payment_method === 'cod') {
           window.open(response.returnURL, "_self");
+        } else if (response.order_id > 0 && payment_method === 'bacs') {
+          window.open(response.returnURL, "_self");
+        } else if (response.order_id > 0 && payment_method === 'cheque') {
+          window.open(response.returnURL, "_self");
         } else {
           const message = "Failed to complete order";
           errorElement =
