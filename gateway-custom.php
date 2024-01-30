@@ -230,10 +230,19 @@ function complete_order_callback()
 	$order->set_customer_user_agent(wc_get_user_agent());
 	$order->set_address($billing_address, 'billing');
 	$order->set_address($shipping_address, 'shipping');
-	$order_id = $order->get_id();
-	update_post_meta($order_id, '_customer_user', get_current_user_id());
+	// $order_id = $order->get_id();
+	// update_post_meta($order_id, '_customer_user', get_current_user_id());
 
-	$order_key = get_post_meta($order_id, '_order_key', true);
+	// $order_key = get_post_meta($order_id, '_order_key', true);
+	// Updated Code For Wordpress Update Version
+	$order_id = $order->get_id();
+	$order = wc_get_order($order_id);
+	$order_key = wc_generate_order_key();
+	$order->set_order_key($order_key);
+	$order->save();
+
+	add_thank_you_message($order_id);
+
 	$returnURL = site_url() . '/checkout/order-received/' . $order_id . '/?key=' . $order_key;
 
 	wp_send_json(["success" => true, "order_id" => $order_id, "order_key" => $order_key, "returnURL" => $returnURL]);
@@ -253,7 +262,6 @@ function add_thank_you_message($order_id)
 }
 
 add_action('woocommerce_thankyou', 'display_payment_status', 10);
-
 function display_payment_status($order_id)
 {
     $order = wc_get_order($order_id);
