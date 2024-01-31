@@ -107,7 +107,7 @@ function complete_order_callback()
 		'state'      => $data["billing_state"],
 		'postcode'   => $data["billing_postcode"],
 		'country'    => $data["billing_country"],
-		'charge_for_customer' => $data["billing_charge_for_customer"],
+		'charge_for_customer' => isset($_POST["billing_charge_for_customer"]) ? $_POST["billing_charge_for_customer"] : 0,
 	);
 	
 	$shipping_address = array(
@@ -148,8 +148,6 @@ function complete_order_callback()
 	$order->set_shipping_state($data["shipping_state"]);
 	$order->set_shipping_postcode($data["shipping_postcode"]);
 	$order->set_shipping_country($data["shipping_country"]);
-	// Set charge for customer
-	$order->set_charge_for_customer($data["charge_for_customer"]);
 	$cart = WC()->cart;
 	foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
 		$product_id = $cart_item['product_id'];
