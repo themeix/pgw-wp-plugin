@@ -51,7 +51,7 @@ class paystation_payment_gateway extends WC_Payment_Gateway
 					'1' => __('Pay With Charge', 'paystation_payment_gateway'),
 					'0' => __('Pay Without Charge', 'paystation_payment_gateway'),
 				),
-				'default'   => '0',
+				'default'   => '1',
 			)
 		);
 	}
