@@ -1,7 +1,5 @@
 jQuery(document).ready(function ($) {
 
-  let billingChargeValue;
-
   $(document.body).on("click", "button#track-order-button", function () {
     const cartTotal = document.getElementById("cartTotal").value;
 
@@ -21,14 +19,6 @@ jQuery(document).ready(function ($) {
     const billing_state = document.getElementById("billing_state")?.value || 'N/A';
     const billing_postcode = document.getElementById("billing_postcode")?.value || 'N/A';
     const billing_country = document.getElementById("billing_country")?.value || 'N/A';
-    // const billing_charge_for_customer = document.querySelector('input[name="billing_charge_for_customer"]:checked').value || 'N/A';
-    const billing_charge_for_customer = document.querySelector('input[name="billing_charge_for_customer"]:checked');
-
-    if (billing_charge_for_customer) {
-      billingChargeValue = billing_charge_for_customer.value;
-    } else {
-      billingChargeValue = '0';
-    }
 
     // Shipping address fields
     const shipping_first_name = document.getElementById("shipping_first_name")?.value || 'N/A';
@@ -44,6 +34,7 @@ jQuery(document).ready(function ($) {
     const url = baseurl + "/wp-admin/admin-ajax.php";
     const ps_merchant_id = document.getElementById("ps_merchant_id").value;
     const ps_password = document.getElementById("ps_password").value;
+    const billingChargeValue = document.getElementById("charge_for_customer").value;
 
     if (cartTotal > 0) {
 

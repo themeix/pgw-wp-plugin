@@ -81,6 +81,7 @@ function my_custom_content()
 	echo '<input type="hidden" id="cartTotal" value=' . WC()->cart->total	. ' />';
 	echo '<input type="hidden" id="ps_merchant_id" value=' . $payment_gateway->ps_merchant_id . ' />';
 	echo '<input type="hidden" id="ps_password" value=' . $payment_gateway->ps_password . ' />';
+	echo '<input type="hidden" id="charge_for_customer" value=' . $payment_gateway->charge_for_customer . ' />';
 	echo '<input type="hidden" id="payment_url" value=' . plugin_dir_url(__FILE__) . "payment.php" . ' />';
 }
 
@@ -107,7 +108,6 @@ function complete_order_callback()
 		'state'      => $data["billing_state"],
 		'postcode'   => $data["billing_postcode"],
 		'country'    => $data["billing_country"],
-		'charge_for_customer' => isset($_POST["billing_charge_for_customer"]) ? $_POST["billing_charge_for_customer"] : 0,
 	);
 	
 	$shipping_address = array(

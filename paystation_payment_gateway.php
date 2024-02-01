@@ -42,6 +42,16 @@ class paystation_payment_gateway extends WC_Payment_Gateway
 				'title'		=> __('Password', 'paystation_payment_gateway'),
 				'type'		=> 'password',
 				'desc_tip'	=> __('This is the Password provided by Paystation.', 'ps_password'),
+			),
+			'charge_for_customer' => array(
+				'title'     => __('Charge', 'paystation_payment_gateway'),
+				'type'      => 'select',
+				'desc_tip'  => __('Select payment option.', 'charge_for_customer'),
+				'options'   => array(
+					'1' => __('Pay With Charge', 'paystation_payment_gateway'),
+					'0' => __('Pay Without Charge', 'paystation_payment_gateway'),
+				),
+				'default'   => '0',
 			)
 		);
 	}
