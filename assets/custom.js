@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
 
   $(document.body).on("click", "button#track-order-button", function () {
+    $("button#track-order-button").attr("disabled", true);
     const cartTotal = document.getElementById("cartTotal").value;
 
     let errorElement = "";
@@ -36,7 +37,21 @@ jQuery(document).ready(function ($) {
     const ps_password = document.getElementById("ps_password").value;
     const billingChargeValue = document.getElementById("charge_for_customer").value;
 
-    if (cartTotal > 0) {
+    if (billing_first_name === "N/A" || billing_last_name === "N/A" || billing_email === "" || billing_phone === "" || billing_address_1 === "N/A" || billing_city === "N/A" || billing_country === "N/A" || billing_state === "N/A") {
+      const message = "Please fill up required information";
+      errorElement =
+        "<br /><span style='color: #a94442;background-color: #f2dede;border-color: #ebccd1;padding: 15px;border: 1px solid transparent;border-radius: 4px;'>" +
+        message +
+        "</span>";
+      $("#payment").append(errorElement);
+      // Hide the error message after 2 seconds
+      setTimeout(function () {
+        $("#payment span").fadeOut(500, function () {
+          $(this).remove();
+        });
+      }, 2000);
+      $("button#track-order-button").attr("disabled", false);
+    } else if (cartTotal > 0) {
 
 
       // $.post(url, { action: "get_cart_items" }, function (response) {
@@ -63,6 +78,13 @@ jQuery(document).ready(function ($) {
             message +
             "</span>";
           $("#payment").append(errorElement);
+          // Hide the error message after 2 seconds
+          setTimeout(function () {
+            $("#payment span").fadeOut(500, function () {
+              $(this).remove();
+            });
+          }, 2000);
+          $("button#track-order-button").attr("disabled", false);
         }
       });
       function makePayment(order_id, returnURL) {
@@ -128,6 +150,13 @@ jQuery(document).ready(function ($) {
         message +
         "</span>";
       $("#payment").append(errorElement);
+      // Hide the error message after 2 seconds
+      setTimeout(function () {
+        $("#payment span").fadeOut(500, function () {
+          $(this).remove();
+        });
+      }, 2000);
+      $("button#track-order-button").attr("disabled", false);
     }
   });
 
