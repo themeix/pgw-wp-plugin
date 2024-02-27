@@ -1,7 +1,9 @@
 <?php
+require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php' );
+$cart_total = WC()->cart->total;
 if (isset($_POST["access"])) {
     $data = $_POST["access"];
-    $cartTotal = $_POST["cartTotal"];
+    $cartTotal = $cart_total;
     $cust_name = $_POST["billing_first_name"];
     $cust_phone = $_POST["billing_phone"];
     $cust_email = $_POST["billing_email"];
