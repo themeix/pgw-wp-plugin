@@ -72,19 +72,7 @@ jQuery(document).ready(function ($) {
         } else if (response.order_id > 0 && payment_method === 'cheque') {
           window.open(response.returnURL, "_self");
         } else {
-          const message = "Failed to complete order";
-          errorElement =
-            "<br /><span style='color: #a94442;background-color: #f2dede;border-color: #ebccd1;padding: 15px;border: 1px solid transparent;border-radius: 4px;'>" +
-            message +
-            "</span>";
-          $("#payment").append(errorElement);
-          // Hide the error message after 2 seconds
-          setTimeout(function () {
-            $("#payment span").fadeOut(500, function () {
-              $(this).remove();
-            });
-          }, 2000);
-          $("button#track-order-button").attr("disabled", false);
+          window.open(response.returnURL, "_self");
         }
       });
       function makePayment(order_id, returnURL) {
