@@ -262,28 +262,28 @@ function complete_order_callback()
 add_action('woocommerce_thankyou', 'add_thank_you_message');
 function add_thank_you_message($order_id)
 {
-	// $payment_status = $_GET['status'] ?? 'Pending payment';
-
-	// $order = wc_get_order($order_id);
-	// if ($payment_status == 'Successful') {
-	// 	$order->update_status('completed');
-	// } elseif ($payment_status == 'Canceled') {            
-	// 	$order->update_status('cancelled');
-	// } elseif ($payment_status == 'Pending payment') {          
-	// 	$order->update_status('processing');
-	// } else{
-	// 	$order->update_status('pending');
-	// }
-
 	$payment_status = $_GET['status'] ?? 'Pending payment';
+
 	$order = wc_get_order($order_id);
 	if ($payment_status == 'Successful') {
 		$order->update_status('completed');
-	} elseif ($payment_status === 'Canceled') {            
+	} elseif ($payment_status == 'Canceled') {            
 		$order->update_status('cancelled');
-	} else {
+	} elseif ($payment_status == 'Pending payment') {          
+		$order->update_status('processing');
+	} else{
 		$order->update_status('pending');
 	}
+
+	// $payment_status = $_GET['status'] ?? 'Pending payment';
+	// $order = wc_get_order($order_id);
+	// if ($payment_status == 'Successful') {
+	// 	$order->update_status('completed');
+	// } elseif ($payment_status === 'Canceled') {            
+	// 	$order->update_status('cancelled');
+	// } else {
+	// 	$order->update_status('pending');
+	// }
 }
 
 add_action('woocommerce_thankyou', 'display_payment_status', 10);
