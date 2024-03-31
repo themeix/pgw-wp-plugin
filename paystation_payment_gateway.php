@@ -6,10 +6,12 @@ class paystation_payment_gateway extends WC_Payment_Gateway
 	{
 		$this->id                 	= 'paystation_payment_gateway';
 		$this->method_title       	= __('Paystation Payment', 'paystation_payment_gateway');
-		$this->title              	= __('Secure Pay with Paystation', 'paystation_payment_gateway');
+		// $this->title              	= __('Secure Pay with Paystation', 'paystation_payment_gateway');
+		// $this->title              	= __($this->get_option('ps_gateway_title'), 'paystation_payment_gateway');
+		$this->title 				= $this->get_option('ps_gateway_title');
 		$this->icon = trailingslashit(WP_PLUGIN_URL) . plugin_basename(dirname(__FILE__)) . '/assets/icon.png';
 		$this->has_fields = true;
-		$this->description = $this->get_option('description');
+		$this->description 			= $this->get_option('ps_gateway_description');
 		$this->supports = array(
 			'products'
 		);
@@ -33,6 +35,18 @@ class paystation_payment_gateway extends WC_Payment_Gateway
 	public function init_form_fields()
 	{
 		$this->form_fields = array(
+			'ps_gateway_title' => array(
+				'title'		=> __('Title', 'paystation_payment_gateway'),
+				'type'		=> 'text',
+				'desc_tip'	=> __('This is the gateway title name.', 'ps_gateway_title'),
+				'default'   => __('PayStation', 'paystation_payment_gateway'),
+			),
+			'ps_gateway_description' => array(
+				'title'		=> __('Description', 'paystation_payment_gateway'),
+				'type'		=> 'text',
+				'desc_tip'	=> __('This is the gateway description.', 'ps_gateway_description'),
+				'default'   => __('Secure Pay With PayStation', 'paystation_payment_gateway'),
+			),
 			'ps_merchant_id' => array(
 				'title'		=> __('Merchant ID', 'paystation_payment_gateway'),
 				'type'		=> 'text',
