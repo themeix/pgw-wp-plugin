@@ -235,19 +235,19 @@ function complete_order_callback()
 	$order_key = wc_generate_order_key();
 	$order->set_order_key($order_key);
 
-	// $user_id = get_current_user_id();
-	// $order->set_customer_id($user_id);
+	$user_id = get_current_user_id();
+	$order->set_customer_id($user_id);
     // =========================================================================================
-	$guest_email = $order->get_billing_email();
-	$existing_user = get_user_by('email', $guest_email);
+	// $guest_email = $order->get_billing_email();
+	// $existing_user = get_user_by('email', $guest_email);
 
-	if ($existing_user) {
-		$guest_user_id = $existing_user->ID;
-	} else {
-		$guest_user_id = wp_create_user($guest_email, wp_generate_password(), $guest_email);
-	}
+	// if ($existing_user) {
+	// 	$guest_user_id = $existing_user->ID;
+	// } else {
+	// 	$guest_user_id = wp_create_user($guest_email, wp_generate_password(), $guest_email);
+	// }
 
-	$order->set_customer_id($guest_user_id);
+	// $order->set_customer_id($guest_user_id);
 	// =========================================================================================
 
 	$order->save();
