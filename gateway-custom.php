@@ -267,7 +267,7 @@ function add_thank_you_message($order_id)
 	$order = wc_get_order($order_id);
 	if ($payment_status == 'Successful') {
 		$order->update_status('completed');
-	} elseif ($payment_status == 'Canceled') {            
+	} elseif ($payment_status == 'Canceled' || $payment_status == 'Failed') {              
 		$order->update_status('cancelled');
 	} elseif ($payment_status == 'Pending payment') {          
 		$order->update_status('processing');
